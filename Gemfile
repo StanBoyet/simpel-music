@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
+
 ruby '2.1.1'
 
+gem 'rename'
 gem 'airbrake'
 gem 'bourbon', '~> 3.2.1'
 gem 'coffee-rails'

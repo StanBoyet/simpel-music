@@ -32,8 +32,8 @@ else
 fi
 
 # Set up staging and production git remotes
-git remote add staging git@heroku.com:simpel-blog-staging.git
-heroku join --app simpel-blog-staging
+git remote add staging git@heroku.com:simpel-music-staging.git
+heroku join --app simpel-music-staging
 
-git remote add production git@heroku.com:simpel-blog-production.git
-heroku join --app simpel-blog-production
+git remote add production git@heroku.com:simpel-music-production.git
+heroku join --app simpel-music-production

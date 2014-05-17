@@ -1,4 +1,4 @@
-Simpel-blog
+simpel-music
 ===========
 
 Getting Started
