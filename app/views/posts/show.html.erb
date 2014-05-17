@@ -15,9 +15,57 @@
   <%= @post.type.name %>
 </p>
 
-<% if @post.type.name == "Audio"%>
+<% if @post.type.name == "Soundcloud"%>
   <iframe class="soundcloud" width="100%" height="465" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<%= @post.content %>&amp;auto_play=false&amp;auto_advance=true&amp;buying=false&amp;liking=false&amp;download=false&amp;sharing=false&amp;show_artwork=false&amp;show_comments=false&amp;show_playcount=false&amp;show_user=true&amp;hide_related=true&amp;visual=false&amp;start_track=0&amp;callback=true">
   </iframe>
+<% elsif @post.type.name == "Youtube"%>
+<div class="youtube">
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="player"></div>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '30',
+          width: '640',
+          videoId: '<%= parse_youtube @post.content %>',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+  </div>
 <% end %>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
