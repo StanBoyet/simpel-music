@@ -28,10 +28,6 @@
     text-align: left;
  }
 
- .alert {
-   margin-top: 10px;
- }
-
 /* Typography */
 
 body {
@@ -41,4 +37,8 @@ body {
 .modal-body.login{
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.nav.navbar-nav{
+  margin-bottom: -2px;
 }
