@@ -6,7 +6,11 @@
   <% if post.type.name == 'URL' %>
   <%= link_to post.content, post.content %>
   <% end %>
-  <p>Type : <%= post.type.name %></p>
+  <br>
+  <span>Type : <%= post.type.name %></span>
+  <% if post.user && post.user.name %>
+   | <span class="pull-right">Author : <%= post.user.name %></span>
+  <% end %>
 
   <% if current_user == post.user && !current_user.nil? %>
   <%= link_to 'Show', post %> |
